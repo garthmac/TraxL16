@@ -7,12 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		885F892E1B0BF3B6009C82EB /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 885F892D1B0BF3B6009C82EB /* Settings.bundle */; };
 		88691F2E1B02AAED0074CA0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88691F2D1B02AAED0074CA0A /* AppDelegate.swift */; };
 		88691F301B02AAED0074CA0A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88691F2F1B02AAED0074CA0A /* ViewController.swift */; };
-		88691F331B02AAED0074CA0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88691F311B02AAED0074CA0A /* Main.storyboard */; };
 		88691F351B02AAED0074CA0A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88691F341B02AAED0074CA0A /* Images.xcassets */; };
 		88691F381B02AAED0074CA0A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88691F361B02AAED0074CA0A /* LaunchScreen.xib */; };
 		88691F441B02AAED0074CA0A /* TraxL16Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88691F431B02AAED0074CA0A /* TraxL16Tests.swift */; };
+		88691F531B02AC0D0074CA0A /* GPX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88691F4D1B02AC0D0074CA0A /* GPX.swift */; };
+		88691F541B02AC0D0074CA0A /* MKGPX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88691F4E1B02AC0D0074CA0A /* MKGPX.swift */; };
+		88691F551B02AC0D0074CA0A /* GPXViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88691F4F1B02AC0D0074CA0A /* GPXViewController.swift */; };
+		88691F561B02AC0D0074CA0A /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88691F501B02AC0D0074CA0A /* ImageViewController.swift */; };
+		88691F571B02AC0D0074CA0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88691F511B02AC0D0074CA0A /* Main.storyboard */; };
+		88691F581B02AC0D0074CA0A /* EditWaypointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88691F521B02AC0D0074CA0A /* EditWaypointViewController.swift */; };
+		88691F5A1B03C2970074CA0A /* EmbededImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88691F591B03C2970074CA0A /* EmbededImageViewController.swift */; };
+		88691F5C1B03C8F40074CA0A /* SimpleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88691F5B1B03C8F40074CA0A /* SimpleMapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,16 +34,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		885F892B1B0BC7FD009C82EB /* info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = info.plist; path = ../info.plist; sourceTree = "<group>"; };
+		885F892D1B0BF3B6009C82EB /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		88691F281B02AAED0074CA0A /* TraxL16.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TraxL16.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		88691F2C1B02AAED0074CA0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88691F2D1B02AAED0074CA0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88691F2F1B02AAED0074CA0A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		88691F321B02AAED0074CA0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		88691F341B02AAED0074CA0A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		88691F371B02AAED0074CA0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		88691F3D1B02AAED0074CA0A /* TraxL16Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TraxL16Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		88691F421B02AAED0074CA0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88691F431B02AAED0074CA0A /* TraxL16Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraxL16Tests.swift; sourceTree = "<group>"; };
+		88691F4D1B02AC0D0074CA0A /* GPX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPX.swift; sourceTree = "<group>"; };
+		88691F4E1B02AC0D0074CA0A /* MKGPX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKGPX.swift; sourceTree = "<group>"; };
+		88691F4F1B02AC0D0074CA0A /* GPXViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPXViewController.swift; sourceTree = "<group>"; };
+		88691F501B02AC0D0074CA0A /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		88691F511B02AC0D0074CA0A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		88691F521B02AC0D0074CA0A /* EditWaypointViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditWaypointViewController.swift; sourceTree = "<group>"; };
+		88691F591B03C2970074CA0A /* EmbededImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmbededImageViewController.swift; sourceTree = "<group>"; };
+		88691F5B1B03C8F40074CA0A /* SimpleMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleMapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,11 +93,17 @@
 		88691F2A1B02AAED0074CA0A /* TraxL16 */ = {
 			isa = PBXGroup;
 			children = (
+				88691F511B02AC0D0074CA0A /* Main.storyboard */,
 				88691F2D1B02AAED0074CA0A /* AppDelegate.swift */,
-				88691F2F1B02AAED0074CA0A /* ViewController.swift */,
-				88691F311B02AAED0074CA0A /* Main.storyboard */,
-				88691F341B02AAED0074CA0A /* Images.xcassets */,
-				88691F361B02AAED0074CA0A /* LaunchScreen.xib */,
+				88691F4D1B02AC0D0074CA0A /* GPX.swift */,
+				88691F4E1B02AC0D0074CA0A /* MKGPX.swift */,
+				88691F4F1B02AC0D0074CA0A /* GPXViewController.swift */,
+				885F892D1B0BF3B6009C82EB /* Settings.bundle */,
+				88691F501B02AC0D0074CA0A /* ImageViewController.swift */,
+				88691F521B02AC0D0074CA0A /* EditWaypointViewController.swift */,
+				88691F591B03C2970074CA0A /* EmbededImageViewController.swift */,
+				88691F5B1B03C8F40074CA0A /* SimpleMapViewController.swift */,
+				885F892B1B0BC7FD009C82EB /* info.plist */,
 				88691F2B1B02AAED0074CA0A /* Supporting Files */,
 			);
 			path = TraxL16;
@@ -90,7 +112,9 @@
 		88691F2B1B02AAED0074CA0A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				88691F2C1B02AAED0074CA0A /* Info.plist */,
+				88691F341B02AAED0074CA0A /* Images.xcassets */,
+				88691F361B02AAED0074CA0A /* LaunchScreen.xib */,
+				88691F2F1B02AAED0074CA0A /* ViewController.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -161,6 +185,7 @@
 				TargetAttributes = {
 					88691F271B02AAED0074CA0A = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = 7P9362E76E;
 					};
 					88691F3C1B02AAED0074CA0A = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -192,7 +217,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88691F331B02AAED0074CA0A /* Main.storyboard in Resources */,
+				885F892E1B0BF3B6009C82EB /* Settings.bundle in Resources */,
+				88691F571B02AC0D0074CA0A /* Main.storyboard in Resources */,
 				88691F381B02AAED0074CA0A /* LaunchScreen.xib in Resources */,
 				88691F351B02AAED0074CA0A /* Images.xcassets in Resources */,
 			);
@@ -213,7 +239,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				88691F301B02AAED0074CA0A /* ViewController.swift in Sources */,
+				88691F551B02AC0D0074CA0A /* GPXViewController.swift in Sources */,
+				88691F581B02AC0D0074CA0A /* EditWaypointViewController.swift in Sources */,
+				88691F541B02AC0D0074CA0A /* MKGPX.swift in Sources */,
 				88691F2E1B02AAED0074CA0A /* AppDelegate.swift in Sources */,
+				88691F561B02AC0D0074CA0A /* ImageViewController.swift in Sources */,
+				88691F5C1B03C8F40074CA0A /* SimpleMapViewController.swift in Sources */,
+				88691F5A1B03C2970074CA0A /* EmbededImageViewController.swift in Sources */,
+				88691F531B02AC0D0074CA0A /* GPX.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,14 +269,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		88691F311B02AAED0074CA0A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				88691F321B02AAED0074CA0A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		88691F361B02AAED0074CA0A /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -342,7 +367,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = TraxL16/Info.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "$(SRCROOT)/info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -352,7 +378,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = TraxL16/Info.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "$(SRCROOT)/info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -411,6 +438,7 @@
 				88691F491B02AAED0074CA0A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		88691F4A1B02AAED0074CA0A /* Build configuration list for PBXNativeTarget "TraxL16Tests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +447,7 @@
 				88691F4C1B02AAED0074CA0A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
