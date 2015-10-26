@@ -10,7 +10,7 @@
 
 import Foundation
 
-class GPX: NSObject, Printable, NSXMLParserDelegate
+class GPX: NSObject, NSXMLParserDelegate
 {
     // MARK: - Public API
     var waypoints = [Waypoint]()
@@ -24,17 +24,19 @@ class GPX: NSObject, Printable, NSXMLParserDelegate
     }
     
     // MARK: - Public Classes
-    class Track: Entry, Printable
+    class Track: Entry
     {
         var fixes = [Waypoint]()
         
         override var description: String {
-            let waypointDescription = "fixes=[\n" + "\n".join(fixes.map { $0.description }) + "\n]"
-            return " ".join([super.description, waypointDescription])
+            var descriptions = [String]()
+            if fixes.count > 0 { descriptions.append("fixes=[\n\n \(fixes)") }
+            let waypointsDescription = descriptions.joinWithSeparator("\n")
+            return " " + super.description + waypointsDescription
         }
     }
     
-    class Waypoint: Entry, Printable
+    class Waypoint: Entry
     {
         var latitude: Double
         var longitude: Double
@@ -51,11 +53,11 @@ class GPX: NSObject, Printable, NSXMLParserDelegate
         lazy var date: NSDate? = self.attributes["time"]?.asGpxDate
         
         override var description: String {
-            return " ".join(["lat=\(latitude)", "lon=\(longitude)", super.description])
+            return " lat=\(latitude) lon=\(longitude) " + super.description
         }
     }
     
-    class Entry: NSObject, Printable
+    class Entry: NSObject
     {
         var links = [Link]()
         var attributes = [String:String]()
@@ -69,11 +71,11 @@ class GPX: NSObject, Printable, NSXMLParserDelegate
             var descriptions = [String]()
             if attributes.count > 0 { descriptions.append("attributes=\(attributes)") }
             if links.count > 0 { descriptions.append("links=\(links)") }
-            return " ".join(descriptions)
+            return " " + descriptions.joinWithSeparator(" ")
         }
     }
     
-    class Link: Printable
+    class Link: CustomStringConvertible
     {
         var href: String
         var linkattributes = [String:String]()
@@ -88,7 +90,7 @@ class GPX: NSObject, Printable, NSXMLParserDelegate
             var descriptions = [String]()
             descriptions.append("href=\(href)")
             if linkattributes.count > 0 { descriptions.append("linkattributes=\(linkattributes)") }
-            return "[" + " ".join(descriptions) + "]"
+            return "[ " + descriptions.joinWithSeparator(" ") + "]"
         }
     }
 
@@ -99,7 +101,7 @@ class GPX: NSObject, Printable, NSXMLParserDelegate
         if waypoints.count > 0 { descriptions.append("waypoints = \(waypoints)") }
         if tracks.count > 0 { descriptions.append("tracks = \(tracks)") }
         if routes.count > 0 { descriptions.append("routes = \(routes)") }
-        return "\n".join(descriptions)
+        return "\n" + descriptions.joinWithSeparator("\n")
     }
 
     // MARK: - Private Implementation
@@ -122,8 +124,7 @@ class GPX: NSObject, Printable, NSXMLParserDelegate
     private func succeed() { complete(true) }
     
     private func parse() {
-        let qos = Int(QOS_CLASS_USER_INITIATED.value)
-        dispatch_async(dispatch_get_global_queue(qos, 0)) {
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
             if let data = NSData(contentsOfURL: self.url) {
                 let parser = NSXMLParser(data: data)
                 parser.delegate = self
@@ -143,15 +144,15 @@ class GPX: NSObject, Printable, NSXMLParserDelegate
     
     private var input = ""
 
-    func parser(parser: NSXMLParser, foundCharacters string: String?) {
-        input += string!
+    func parser(parser: NSXMLParser, foundCharacters string: String) {
+        input += string
     }
     
     private var waypoint: Waypoint?
     private var track: Track?
     private var link: Link?
     // MARK: didStartElement ex. tag <wpt>
-    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject]) {
+    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String:String]) {
         switch elementName {
             case "trkseg":
                 if track == nil { fallthrough }
@@ -162,11 +163,11 @@ class GPX: NSObject, Printable, NSXMLParserDelegate
                 routes.append(Track())
                 track = routes.last
             case "rtept", "trkpt", "wpt":
-                let latitude = (attributeDict["lat"] as! NSString).doubleValue
-                let longitude = (attributeDict["lon"] as! NSString).doubleValue
-                waypoint = Waypoint(latitude: latitude, longitude: longitude)
+                let latitude = Double(attributeDict["lat"]! )
+                let longitude = Double(attributeDict["lon"]! )
+                waypoint = Waypoint(latitude: latitude!, longitude: longitude!)
             case "link":
-                link = Link(href: attributeDict["href"] as! String)
+                link = Link(href: attributeDict["href"]! )
             default: break
         }
     }

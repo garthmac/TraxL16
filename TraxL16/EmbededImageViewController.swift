@@ -32,7 +32,7 @@ class EmbededImageViewController: ImageViewController {
         if let mapView = smvc?.mapView {
             mapView.mapType = .Hybrid
             mapView.removeAnnotations(mapView.annotations)
-            mapView.addAnnotation(waypoint)
+            mapView.addAnnotation(waypoint!)
             mapView.showAnnotations(mapView.annotations, animated: true)
             mapView.region.span.latitudeDelta = 0.5 //desired zoom level of the map, with smaller delta values corresponding to a higher zoom level
         }

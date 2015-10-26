@@ -21,14 +21,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication,
         openURL: NSURL,
         sourceApplication: String?,
-        annotation: AnyObject?) -> Bool {
+        annotation: AnyObject) -> Bool {
         //post a notification when a gpx file arrives
         let center = NSNotificationCenter.defaultCenter()
         let notification = NSNotification(name: GPXURL.Notification,
             object: self,
             userInfo: [GPXURL.Key : openURL])
         center.postNotification(notification)
-        println("URL = \(openURL)")
+        print("URL = \(openURL)")
         return true
     }
     

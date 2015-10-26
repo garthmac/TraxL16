@@ -39,7 +39,7 @@ class GPXViewController: UIViewController, MKMapViewDelegate, UIPopoverPresentat
     
     private func clearWaypoints() {
         if mapView?.annotations != nil {
-            mapView.removeAnnotations(mapView.annotations as! [MKAnnotation])
+            mapView.removeAnnotations(mapView.annotations)
         }
     }
     
@@ -53,39 +53,39 @@ class GPXViewController: UIViewController, MKMapViewDelegate, UIPopoverPresentat
             let coordinate = mapView.convertPoint(sender.locationInView(mapView), toCoordinateFromView: mapView)
             let waypoint = EditableWaypoint(latitude: coordinate.latitude, longitude: coordinate.longitude)
             waypoint.name = "Dropped"
-//            waypoint.links.append(GPX.Link(href: "http://cs193p.stanford.edu/Images/Panorama.jpg")) // for demo/debug/testing)
+//            waypoint.links.append(GPX.Link(href: "https://cs193p.stanford.edu/Images/Panorama.jpg")) // for demo/debug/testing)
             mapView.addAnnotation(waypoint)
         }
     }
 
     // MARK: - MKMapViewDelegate
     
-    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         var view = mapView.dequeueReusableAnnotationViewWithIdentifier(Constants.AnnotationViewReuseIdentifier)
         if view == nil {
             view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: Constants.AnnotationViewReuseIdentifier)
-            view.canShowCallout = true
+            view!.canShowCallout = true
         } else {
-            view.annotation = annotation
+            view!.annotation = annotation
         }
-        view.draggable = annotation is EditableWaypoint //new test L15
+        view!.draggable = annotation is EditableWaypoint //new test L15
         
-        view.leftCalloutAccessoryView = nil
-        view.rightCalloutAccessoryView = nil
+        view!.leftCalloutAccessoryView = nil
+        view!.rightCalloutAccessoryView = nil
         if let waypoint = annotation as? GPX.Waypoint {
             if waypoint.thumbnailURL != nil {
-                view.leftCalloutAccessoryView = UIButton(frame: Constants.LeftCalloutFrame)
+                view!.leftCalloutAccessoryView = UIButton(frame: Constants.LeftCalloutFrame)
             } //else 4 lines up
             if annotation is EditableWaypoint {
-                view.rightCalloutAccessoryView = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as! UIButton
+                view!.rightCalloutAccessoryView = UIButton(type: UIButtonType.DetailDisclosure)
             }
         }
         return view  //pin is now created in this delegate func but not shown yet
     }
     
-    func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         if let waypoint = view.annotation as? GPX.Waypoint {
-            if let url = waypoint.thumbnailURL {
+            if let _ = waypoint.thumbnailURL {
                 if view.leftCalloutAccessoryView == nil {
                     //an Editable image must have been added with the Camera
                     view.leftCalloutAccessoryView = UIButton(frame: Constants.LeftCalloutFrame)
@@ -102,7 +102,7 @@ class GPXViewController: UIViewController, MKMapViewDelegate, UIPopoverPresentat
         }
     }
     
-    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         //performSegue - copy Casini ImageViewController file and storyboard item
         // control drag from Story(Image View - frame button to new IVC
 //        performSegueWithIdentifier(Constants.ShowImageSegue, sender: view)
@@ -173,12 +173,12 @@ class GPXViewController: UIViewController, MKMapViewDelegate, UIPopoverPresentat
         let appDelegate = UIApplication.sharedApplication().delegate
         
         center.addObserverForName(GPXURL.Notification, object: appDelegate, queue: queue) { notification in
-            if let url = notification?.userInfo![GPXURL.Key] as? NSURL {
+            if let url = notification.userInfo![GPXURL.Key] as? NSURL {
                     //set the model
                 self.gpxURL = url
             }
         }
-        gpxURL = NSURL(string: "http://cs193p.stanford.edu/Vacation.gpx")
+        gpxURL = NSURL(string: "https://cs193p.stanford.edu/Vacation.gpx")
                 // for demo/debug/testing
     }
     
@@ -201,7 +201,7 @@ class GPXViewController: UIViewController, MKMapViewDelegate, UIPopoverPresentat
 extension UIViewController {
     var contentViewController: UIViewController {
         if let navCon = self as? UINavigationController {
-            return navCon.visibleViewController
+            return navCon.visibleViewController!
         } else {
             return self
         }

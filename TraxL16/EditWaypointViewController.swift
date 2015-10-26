@@ -35,14 +35,14 @@ class EditWaypointViewController: UIViewController, UITextFieldDelegate, UIImage
             let picker = UIImagePickerController()
             picker.sourceType = .Camera
             //if video check media types
-            picker.mediaTypes = [kUTTypeImage]
+            picker.mediaTypes = [kUTTypeImage as String]
             picker.delegate = self
             picker.allowsEditing = true
             presentViewController(picker, animated: true, completion: nil)
         }
     }
     // MARK: UIImagePickerControllerDelegate, UINavigationControllerDelegate
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         var image = info[UIImagePickerControllerEditedImage] as? UIImage
         if image == nil {
             image = info[UIImagePickerControllerOriginalImage] as? UIImage
@@ -62,13 +62,12 @@ class EditWaypointViewController: UIViewController, UITextFieldDelegate, UIImage
             if let imageData = UIImageJPEGRepresentation(image, 1.0) {
                 let fileManager = NSFileManager() //inst instead of default
                 //should store photo in photos but to demo fileSystem
-                if let docsDir = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first as? NSURL {
+                if let docsDir = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first {
                     let unique = NSDate.timeIntervalSinceReferenceDate()
                     let url = docsDir.URLByAppendingPathComponent("\(unique).jpg")
-                    if let path = url.absoluteString {
-                        if imageData.writeToURL(url, atomically: true) {
-                            waypointToEdit?.links = [GPX.Link(href: path)] //replace all links
-                        }
+                    let path = url.absoluteString
+                    if imageData.writeToURL(url, atomically: true) {
+                        waypointToEdit?.links = [GPX.Link(href: path)] //replace all links
                     }
                 }
             }
@@ -137,7 +136,7 @@ class EditWaypointViewController: UIViewController, UITextFieldDelegate, UIImage
     //   (since we aren't allowed to do UI anywhere but main queue)
     private func updateImage() {
         if let url = waypointToEdit?.imageURL {
-            let qos = Int(QOS_CLASS_USER_INITIATED.value)
+            let qos = Int(QOS_CLASS_USER_INITIATED.rawValue)
             dispatch_async(dispatch_get_global_queue(qos, 0)) { [weak self] in
                 if let imageData = NSData(contentsOfURL: url) {// this blocks the thread it is on
                     if url == self?.waypointToEdit?.imageURL {

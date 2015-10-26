@@ -34,8 +34,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate
     {
         if let url = imageURL {
             spinner?.startAnimating()
-            let qos = Int(QOS_CLASS_USER_INITIATED.value)
-            dispatch_async(dispatch_get_global_queue(qos, 0)) { () -> Void in
+            dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { () -> Void in
                 let imageData = NSData(contentsOfURL: url) // this blocks the thread it is on
                 dispatch_async(dispatch_get_main_queue()) {
                     // only do something with this image
